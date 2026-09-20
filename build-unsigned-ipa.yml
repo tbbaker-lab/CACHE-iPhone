@@ -1,0 +1,50 @@
+name: Build CACHE unsigned IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-ios:
+    runs-on: macos-26
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Generate iOS project
+        run: npx expo prebuild --platform ios --clean --non-interactive
+      - name: Install CocoaPods
+        run: cd ios && pod install
+      - name: Build device app without Apple signing
+        run: |
+          set -euxo pipefail
+          cd ios
+          xcodebuild \
+            -workspace CACHE.xcworkspace \
+            -scheme CACHE \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
+      - name: Package unsigned IPA
+        run: |
+          set -euxo pipefail
+          APP=$(find ios/build/Build/Products/Release-iphoneos -maxdepth 1 -name '*.app' | head -n 1)
+          test -n "$APP"
+          rm -rf Payload CACHE-unsigned.ipa
+          mkdir Payload
+          cp -R "$APP" Payload/
+          /usr/bin/zip -qry CACHE-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CACHE-unsigned-ipa
+          path: CACHE-unsigned.ipa
