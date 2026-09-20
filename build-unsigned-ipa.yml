@@ -1,4 +1,4 @@
-name: Build CACHE unsigned IPA
+name: .github/workflows/build-unsigned-ipa.yml
 
 on:
   workflow_dispatch:
