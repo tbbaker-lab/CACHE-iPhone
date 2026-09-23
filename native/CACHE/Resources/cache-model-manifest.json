@@ -1,0 +1,10 @@
+{
+  "format": "GGUF",
+  "filename": "cache-model.gguf",
+  "downloadPolicy": "never",
+  "status": "bundled",
+  "model": "Qwen2.5-1.5B-Instruct Q4_K_M",
+  "runtime": "llama.cpp b5046",
+  "sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+  "notes": "Mandatory app resource. The build fails if the model or runtime is missing. No first-launch download."
+}

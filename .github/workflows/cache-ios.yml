@@ -1,0 +1,57 @@
+name: CACHE bundled AI IPA
+on:
+  push:
+    branches: [codex/cache-bundled-ai-20260923]
+    paths: ['native/**', '.github/workflows/cache-ios.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cache-ios-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: native
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare pinned model and static runtime on build machine
+        run: python3 scripts/prepare_assets.py
+      - name: Install project generator
+        run: brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+      - name: Compile ARM64 iPhone app and verify model inside IPA
+        run: |
+          set -o pipefail
+          bash scripts/build-unsigned.sh 2>&1 | tee build-device.log
+      - name: Run Simulator core, real inference, and interaction tests
+        run: |
+          set -o pipefail
+          DEVICE=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for k,v in d["devices"].items() if "iOS" in k for x in v if "iPhone" in x["name"]))')
+          xcodebuild -project CACHE.xcodeproj -scheme CACHE -configuration Debug \
+            -destination "platform=iOS Simulator,id=$DEVICE" -derivedDataPath build/tests \
+            -parallel-testing-enabled NO -resultBundlePath build/CACHE-tests.xcresult \
+            CODE_SIGNING_ALLOWED=NO test 2>&1 | tee test.log
+      - name: Upload verified IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: CACHE-bundled-AI-unsigned-IPA
+          path: native/build/export/CACHE-bundled-AI-unsigned.ipa
+          compression-level: 0
+          retention-days: 7
+      - name: Upload test evidence and generated Xcode project
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CACHE-build-evidence
+          path: |
+            native/build-device.log
+            native/test.log
+            native/build/CACHE-tests.xcresult
+            native/CACHE.xcodeproj
+          retention-days: 7

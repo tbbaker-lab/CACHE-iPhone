@@ -1,0 +1,79 @@
+[
+  {
+    "id": "water-treatment",
+    "title": "Purify water safely",
+    "category": "Water",
+    "keywords": ["water", "purify", "boil", "filter", "disinfect", "wilderness"],
+    "content": "The most reliable field method is a rolling boil: bring clear water to a full boil for at least 1 minute, or 3 minutes at high elevation, then cool it in a covered container. Filtering removes particles but does not reliably remove every pathogen, so follow a filter with boiling or a correctly labelled disinfectant when possible. Avoid water downstream of chemicals, fuel, salt water, or heavy contamination; treatment cannot make those safe."
+  },
+  {
+    "id": "shelter-warmth",
+    "title": "Stay warm with limited supplies",
+    "category": "Shelter",
+    "keywords": ["warm", "cold", "hypothermia", "shelter", "fire", "clothing"],
+    "content": "Get out of wind and rain first. Insulate yourself from the ground with dry leaves, clothing, a pack, or other material, then add a roof and windbreak. Keep clothing dry, cover your head, and avoid sweating. Use a fire only where it is legal and safe, clear the area around it, and keep water ready. Shivering, confusion, unusual tiredness, and clumsy movement are warning signs of hypothermia."
+  },
+  {
+    "id": "first-aid-priorities",
+    "title": "Emergency first aid priorities",
+    "category": "First aid",
+    "keywords": ["first aid", "bleeding", "breathing", "unconscious", "injury", "emergency"],
+    "content": "Make the scene safe, then check responsiveness and normal breathing. For life-threatening bleeding, apply firm direct pressure with cloth or a dressing and add more material without removing soaked layers. If a person is unresponsive and not breathing normally, contact emergency services and begin CPR if trained; use an AED when available. Keep the person warm, monitor them, and do not give food or drink to someone who is unconscious."
+  },
+  {
+    "id": "navigation-basics",
+    "title": "Navigate without getting more lost",
+    "category": "Navigation",
+    "keywords": ["navigate", "lost", "map", "compass", "direction", "landmark"],
+    "content": "Stop moving when you realize you are lost. Mark your last known location, check your map and compass, and retrace only if the route is short and obvious. Use large landmarks, drainage patterns, sun position, and safely visible terrain features as supporting clues rather than relying on one sign. Leave clear markers only where permitted, conserve battery, and make yourself visible or audible to rescuers."
+  },
+  {
+    "id": "weather-lightning",
+    "title": "Read changing weather",
+    "category": "Weather",
+    "keywords": ["weather", "storm", "lightning", "rain", "wind", "forecast"],
+    "content": "Darkening skies, rapidly building clouds, rising wind, and distant thunder mean conditions may worsen quickly. Move away from exposed ridges, isolated tall objects, flood channels, and unstable slopes. During lightning, seek a substantial enclosed shelter; if none exists, spread out from others, crouch low only as a last resort, and do not lie flat. Never camp in a dry-looking channel during unsettled weather."
+  },
+  {
+    "id": "food-safety",
+    "title": "Food safety outdoors",
+    "category": "Food",
+    "keywords": ["food", "edible", "plants", "cooking", "preserve", "poison"],
+    "content": "Do not eat an unfamiliar wild plant, mushroom, or berry based on a photograph, a folk test, or an animal eating it. Keep raw meat separate from ready-to-eat food, cook it thoroughly, and discard food with a suspicious smell, slime, or long time in the temperature danger zone. When in doubt, conserve safe water and known food instead of taking a poisoning risk."
+  },
+  {
+    "id": "emergency-kit",
+    "title": "Build a compact emergency kit",
+    "category": "Preparedness",
+    "keywords": ["emergency", "kit", "go bag", "preparedness", "supplies", "radio"],
+    "content": "Prioritize water, a way to treat water, warm layers, shelter material, light, a whistle, first-aid supplies, medication, power for a phone or radio, a map, and a way to make safe signals. Keep copies of essential information and check batteries, expiry dates, weather gear, and medications regularly. A small kit that is actually carried is more useful than a large kit left at home."
+  },
+  {
+    "id": "mechanical-troubleshooting",
+    "title": "Troubleshoot a mechanical problem",
+    "category": "Mechanics",
+    "keywords": ["mechanic", "engine", "vehicle", "repair", "mechanical", "machine"],
+    "content": "Make the system safe before troubleshooting: stop moving parts, isolate power, and let hot components cool. Describe the symptom, note when it began, and check the simplest causes first such as a loose connection, blocked intake, low fluid, blown fuse, or damaged belt. Do not bypass a safety interlock or work under an unsupported load."
+  },
+  {
+    "id": "basic-electronics",
+    "title": "Check a simple electrical circuit",
+    "category": "Electronics",
+    "keywords": ["electronics", "battery", "voltage", "circuit", "fuse", "wiring"],
+    "content": "Disconnect power before changing wiring. Look for obvious damage, corrosion, reversed polarity, loose terminals, and a blown fuse. A multimeter can check continuity only on a de-energized circuit; use the correct voltage range and never short a battery with a probe or wire. Replace a fuse with the same rating, not a larger one."
+  },
+  {
+    "id": "fire-safety",
+    "title": "Use fire safely",
+    "category": "Fire",
+    "keywords": ["fire", "fuel", "campfire", "smoke", "extinguish", "burn"],
+    "content": "Check local restrictions before lighting a fire. Use an existing ring where possible, clear combustible material around it, keep it small, and never leave it unattended. Extinguish with water, stir, and repeat until everything is cold to the touch; embers can re-ignite after they look out. Treat burns with cool running water for at least 20 minutes when available, and seek medical help for serious or extensive burns."
+  },
+  {
+    "id": "general-problem-solving",
+    "title": "A practical way to solve a problem",
+    "category": "General reference",
+    "keywords": ["plan", "problem", "decision", "science", "practical", "steps"],
+    "content": "Define the immediate goal, identify hazards, gather what you know, and choose the smallest reversible step that gives useful information. Re-check the result before escalating. Keep a short written record of observations, times, measurements, and changes so another person can understand what happened."
+  }
+]

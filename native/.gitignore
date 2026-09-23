@@ -1,0 +1,11 @@
+build/
+DerivedData/
+*.xcarchive
+*.ipa
+*.dSYM.zip
+.DS_Store
+Vendor/
+build-assets/
+CACHE/ModelAssets/*.gguf
+*.log
+__pycache__/
