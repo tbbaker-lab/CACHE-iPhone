@@ -15,7 +15,7 @@ struct LocalKnowledgeStore {
 
     func search(_ query: String, limit: Int = 3) -> [KnowledgeEntry] {
         let tokens = tokenize(query)
-        guard !tokens.isEmpty else { return Array(entries.prefix(limit)) }
+        guard !tokens.isEmpty else { return [] }
 
         let ranked = entries.map { entry -> (KnowledgeEntry, Int) in
             let haystack = ([entry.title, entry.category] + entry.keywords + [entry.content])
@@ -39,9 +39,10 @@ struct LocalKnowledgeStore {
     }
 
     private func tokenize(_ text: String) -> [String] {
-        text.lowercased()
+        let ignored: Set<String> = ["the", "and", "for", "how", "what", "with", "are", "can", "have", "that", "this", "cache", "please", "you", "does", "would", "could", "should"]
+        return text.lowercased()
             .split { !$0.isLetter && !$0.isNumber }
             .map(String.init)
-            .filter { $0.count > 2 }
+            .filter { $0.count > 2 && !ignored.contains($0) }
     }
 }

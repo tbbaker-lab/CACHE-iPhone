@@ -42,3 +42,5 @@ $manifest = Get-Content (Join-Path $root 'CACHE/Resources/cache-model-manifest.j
 if ($manifest.downloadPolicy -ne 'never') { throw 'Model download policy must remain never.' }
 
 Write-Output "CACHE project validation passed: $($knowledge.Count) bundled knowledge entries; no model download path."
+python (Join-Path $root 'scripts/verify_assets.py')
+if ($LASTEXITCODE -ne 0) { throw 'Bundled asset verification failed.' }

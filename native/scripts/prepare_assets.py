@@ -12,7 +12,10 @@ LOCK = json.loads((ROOT / "scripts/assets.lock.json").read_text())
 
 def digest(path):
     with path.open("rb") as stream:
-        return hashlib.file_digest(stream, "sha256").hexdigest()
+        value = hashlib.sha256()
+        while block := stream.read(8 * 1024 * 1024):
+            value.update(block)
+        return value.hexdigest()
 
 def download(asset, destination):
     if destination.exists() and digest(destination) == asset["sha256"]:

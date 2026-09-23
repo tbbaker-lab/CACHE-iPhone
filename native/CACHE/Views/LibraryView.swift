@@ -29,6 +29,13 @@ struct LibraryView: View {
                     .foregroundStyle(.gray)
 
                 ForEach(results) { entry in
+                    DisclosureGroup {
+                        Text(entry.content)
+                            .font(.system(size: 16))
+                            .foregroundStyle(.white.opacity(0.8))
+                            .textSelection(.enabled)
+                            .padding(.top, 8)
+                    } label: {
                     VStack(alignment: .leading, spacing: 7) {
                         HStack {
                             Text(entry.title)
@@ -39,13 +46,11 @@ struct LibraryView: View {
                                 .tracking(1)
                                 .foregroundStyle(.gray)
                         }
-                        Text(entry.content)
-                            .font(.system(size: 15))
-                            .foregroundStyle(.white.opacity(0.68))
-                            .lineLimit(4)
                     }
                     .foregroundStyle(.white)
                     .padding(.vertical, 8)
+                    }
+                    .tint(.white)
                 }
             }
             .padding(.horizontal, 28)

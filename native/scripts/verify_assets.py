@@ -10,7 +10,10 @@ assert model.stat().st_size == lock["model"]["bytes"], "Incomplete model"
 with model.open("rb") as f:
     assert f.read(4) == b"GGUF", "Invalid GGUF header"
     f.seek(0)
-    assert hashlib.file_digest(f, "sha256").hexdigest() == lock["model"]["sha256"], "Model checksum mismatch"
+    digest = hashlib.sha256()
+    while block := f.read(8 * 1024 * 1024):
+        digest.update(block)
+    assert digest.hexdigest() == lock["model"]["sha256"], "Model checksum mismatch"
 runtime = ROOT / lock["runtime"]["path"]
 assert (runtime / "ios-arm64/llama.framework/llama").is_file(), "Missing iPhone inference runtime"
 assert (runtime / "ios-arm64_x86_64-simulator/llama.framework/llama").is_file(), "Missing Simulator runtime"

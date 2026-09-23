@@ -18,7 +18,10 @@ with zipfile.ZipFile(ipa) as archive:
     assert binary[:4] == bytes.fromhex("cffaedfe"), "App executable must be 64-bit Mach-O"
     assert int.from_bytes(binary[4:8], "little") == 0x0100000c, "App must contain an ARM64 device executable"
     with archive.open(prefix + "cache-model.gguf") as model:
-        actual = hashlib.file_digest(model, "sha256").hexdigest()
+        value = hashlib.sha256()
+        while block := model.read(8 * 1024 * 1024):
+            value.update(block)
+        actual = value.hexdigest()
     assert actual == lock["model"]["sha256"], "IPA model is missing or altered"
     for name in ["knowledge.json", "Qwen-LICENSE.txt", "llama-LICENSE.txt"]:
         assert prefix + name in names, "Missing bundled resource: " + name
